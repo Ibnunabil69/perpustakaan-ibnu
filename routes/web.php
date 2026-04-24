@@ -7,7 +7,8 @@ use App\Http\Controllers\PeminjamanController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    $books = \App\Models\Book::with('category')->latest()->take(4)->get();
+    return view('landing', compact('books'));
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
