@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+    html {
+        overflow-y: scroll;
+    }
+
     body {
         @apply bg-orange-50/40 text-gray-800 antialiased selection:bg-amber-100 selection:text-amber-900;
     }
@@ -21,6 +25,14 @@
     ::-webkit-scrollbar-thumb:hover {
         background: #b87f4a;
     }
+
+    /* Force hide default select arrows */
+    select.appearance-none {
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        background-image: none !important;
+    }
 }
 
 @layer utilities {
@@ -30,4 +42,19 @@
                           radial-gradient(circle at 80% 20%, rgba(20, 184, 166, 0.03) 0%, transparent 50%),
                           radial-gradient(circle at 50% 80%, rgba(251, 146, 60, 0.03) 0%, transparent 50%);
     }
+
+    /* Hide scrollbars but keep functionality */
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-hide {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+}
+
+/* Toast progress bar animation */
+@keyframes shrink {
+    from { width: 100%; }
+    to { width: 0%; }
 }

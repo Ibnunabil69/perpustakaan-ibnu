@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,6 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Category
+        $catFiksi = Category::create(['name' => 'Fiksi', 'slug' => 'fiksi']);
+        $catTekno = Category::create(['name' => 'Teknologi', 'slug' => 'teknologi']);
+        $catSains = Category::create(['name' => 'Sains', 'slug' => 'sains']);
+
         // Admin user
         User::create([
             'name' => 'Admin Perpus',
@@ -25,18 +31,21 @@ class DatabaseSeeder extends Seeder
         // Siswa users
         User::create([
             'name' => 'Siswa Satu',
+            'phone' => '081234567890',
             'email' => 'siswa1@test.com',
             'password' => Hash::make('password'),
             'role' => 'siswa',
         ]);
         User::create([
             'name' => 'Siswa Dua',
+            'phone' => '081234567891',
             'email' => 'siswa2@test.com',
             'password' => Hash::make('password'),
             'role' => 'siswa',
         ]);
         User::create([
             'name' => 'Siswa Tiga',
+            'phone' => '081234567892',
             'email' => 'siswa3@test.com',
             'password' => Hash::make('password'),
             'role' => 'siswa',
@@ -44,6 +53,7 @@ class DatabaseSeeder extends Seeder
 
         // Books
         Book::create([
+            'category_id' => $catTekno->id,
             'judul' => 'Belajar Laravel 12',
             'penulis' => 'Taylor Otwell',
             'penerbit' => 'Laravel Press',
@@ -51,6 +61,7 @@ class DatabaseSeeder extends Seeder
             'stok' => 5
         ]);
         Book::create([
+            'category_id' => $catTekno->id,
             'judul' => 'Mastering Tailwind CSS',
             'penulis' => 'Adam Wathan',
             'penerbit' => 'Tailwind Labs',
@@ -58,6 +69,7 @@ class DatabaseSeeder extends Seeder
             'stok' => 3
         ]);
         Book::create([
+            'category_id' => $catFiksi->id,
             'judul' => 'Seni Berpikir Positif',
             'penulis' => 'Ibrahim Elfiky',
             'penerbit' => 'Zaman',
@@ -65,6 +77,7 @@ class DatabaseSeeder extends Seeder
             'stok' => 10
         ]);
         Book::create([
+            'category_id' => $catTekno->id,
             'judul' => 'Pemrograman Web Mudah',
             'penulis' => 'Budi Raharjo',
             'penerbit' => 'Informatika',
@@ -72,6 +85,7 @@ class DatabaseSeeder extends Seeder
             'stok' => 0
         ]);
         Book::create([
+            'category_id' => $catSains->id,
             'judul' => 'Sejarah Dunia Klasik',
             'penulis' => 'John Doe',
             'penerbit' => 'Gramedia',

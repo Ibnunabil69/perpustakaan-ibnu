@@ -23,6 +23,12 @@
         </div>
 
         <div>
+            <x-ui.label for="phone" value="{{ __('Nomor Telepon (WhatsApp)') }}" />
+            <x-ui.input id="phone" name="phone" type="text" :value="old('phone', $user->phone)" required autocomplete="tel" />
+            <x-input-error class="mt-1" :messages="$errors->get('phone')" />
+        </div>
+
+        <div>
             <x-ui.label for="email" value="{{ __('Alamat Email') }}" />
             <x-ui.input id="email" name="email" type="email" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-1" :messages="$errors->get('email')" />

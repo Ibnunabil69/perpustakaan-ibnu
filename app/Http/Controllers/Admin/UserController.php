@@ -28,7 +28,8 @@ class UserController extends Controller
             ->when($search, function ($query, $search) {
                 return $query->where(function ($q) use ($search) {
                     $q->where('name', 'like', "%{$search}%")
-                      ->orWhere('email', 'like', "%{$search}%");
+                      ->orWhere('email', 'like', "%{$search}%")
+                      ->orWhere('phone', 'like', "%{$search}%");
                 });
             })
             ->orderBy($sortBy, $sortDir)
@@ -53,11 +54,13 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name'     => ['required', 'string', 'max:255'],
+            'phone'    => ['nullable', 'string', 'max:20'],
             'email'    => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ], [
             'name.required'      => 'Nama lengkap wajib diisi.',
-            'name.max'           => 'Nama maksimal 255 karakter.',
+            'username.required'  => 'Username wajib diisi.',
+            'username.unique'    => 'Username sudah digunakan.',
             'email.required'     => 'Email wajib diisi.',
             'email.email'        => 'Format email tidak valid.',
             'email.unique'       => 'Email sudah digunakan.',
@@ -68,6 +71,7 @@ class UserController extends Controller
 
         User::create([
             'name'     => $validated['name'],
+            'phone'    => $validated['phone'],
             'email'    => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role'     => 'siswa',
@@ -94,14 +98,16 @@ class UserController extends Controller
         $user = User::where('role', 'siswa')->findOrFail($id);
 
         $validated = $request->validate([
-            'name'  => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,' . $user->id],
+            'name'     => ['required', 'string', 'max:255'],
+            'phone'    => ['nullable', 'string', 'max:20'],
+            'email'    => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,' . $user->id],
         ], [
-            'name.required'  => 'Nama lengkap wajib diisi.',
-            'name.max'       => 'Nama maksimal 255 karakter.',
-            'email.required' => 'Email wajib diisi.',
-            'email.email'    => 'Format email tidak valid.',
-            'email.unique'   => 'Email sudah digunakan oleh pengguna lain.',
+            'name.required'     => 'Nama lengkap wajib diisi.',
+            'username.required' => 'Username wajib diisi.',
+            'username.unique'   => 'Username sudah digunakan oleh orang lain.',
+            'email.required'    => 'Email wajib diisi.',
+            'email.email'       => 'Format email tidak valid.',
+            'email.unique'      => 'Email sudah digunakan oleh pengguna lain.',
         ]);
 
         $user->update($validated);

@@ -1,42 +1,100 @@
 <x-guest-layout>
-    <div class="mb-5">
-        <h1 class="text-lg font-semibold text-gray-800">Buat akun baru</h1>
-        <p class="text-sm text-gray-500 mt-1">Bergabunglah dengan PerpusKita untuk mulai meminjam buku.</p>
+    <x-slot name="header">Daftar</x-slot>
+
+    <!-- Header Section -->
+    <div class="mb-10 text-center">
+        <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Bergabung Sekarang</h1>
+        <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+            Daftarkan akun Anda untuk mulai menggunakan layanan perpustakaan digital kami.
+        </p>
     </div>
 
-    <form method="POST" action="{{ route('register') }}" class="space-y-4">
+    <form method="POST" action="{{ route('register') }}" class="space-y-5">
         @csrf
 
-        <div>
-            <x-ui.label value="Nama Lengkap" />
-            <x-ui.input id="name" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="Nama lengkap" />
-            <x-input-error :messages="$errors->get('name')" class="mt-1" />
+        <!-- Name Field -->
+        <div class="space-y-1.5">
+            <x-ui.label for="name" value="Nama Lengkap" class="text-sm font-semibold text-gray-700" />
+            <x-ui.input 
+                id="name" 
+                type="text" 
+                name="name" 
+                :value="old('name')" 
+                required 
+                autofocus 
+                autocomplete="name" 
+                placeholder="Masukkan nama lengkap" 
+                icon="ri-user-line"
+                class="py-2.5"
+            />
+            <x-input-error :messages="$errors->get('name')" />
         </div>
 
-        <div>
-            <x-ui.label value="Email" />
-            <x-ui.input id="email" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="nama@email.com" />
-            <x-input-error :messages="$errors->get('email')" class="mt-1" />
+        <!-- Email Field -->
+        <div class="space-y-1.5">
+            <x-ui.label for="email" value="Email" class="text-sm font-semibold text-gray-700" />
+            <x-ui.input 
+                id="email" 
+                type="email" 
+                name="email" 
+                :value="old('email')" 
+                required 
+                autocomplete="username" 
+                placeholder="nama@email.com" 
+                icon="ri-mail-line"
+                class="py-2.5"
+            />
+            <x-input-error :messages="$errors->get('email')" />
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
-            <div>
-                <x-ui.label value="Password" />
-                <x-ui.input id="password" type="password" name="password" required autocomplete="new-password" placeholder="••••••••" />
-                <x-input-error :messages="$errors->get('password')" class="mt-1" />
+        <!-- Password Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+                <x-ui.label for="password" value="Password" class="text-sm font-semibold text-gray-700" />
+                <x-ui.input 
+                    id="password" 
+                    type="password" 
+                    name="password" 
+                    required 
+                    autocomplete="new-password" 
+                    placeholder="••••••••" 
+                    icon="ri-lock-2-line"
+                    class="py-2.5"
+                />
+                <x-input-error :messages="$errors->get('password')" />
             </div>
 
-            <div>
-                <x-ui.label value="Konfirmasi" />
-                <x-ui.input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="••••••••" />
-                <x-input-error :messages="$errors->get('password_confirmation')" class="mt-1" />
+            <div class="space-y-1.5">
+                <x-ui.label for="password_confirmation" value="Konfirmasi" class="text-sm font-semibold text-gray-700" />
+                <x-ui.input 
+                    id="password_confirmation" 
+                    type="password" 
+                    name="password_confirmation" 
+                    required 
+                    autocomplete="new-password" 
+                    placeholder="••••••••" 
+                    icon="ri-lock-check-line"
+                    class="py-2.5"
+                />
+                <x-input-error :messages="$errors->get('password_confirmation')" />
             </div>
         </div>
 
-        <x-ui.button type="submit" class="w-full">Daftar</x-ui.button>
+        <!-- Submit Button -->
+        <div class="pt-2">
+            <button type="submit" class="w-full h-11 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white text-sm font-bold rounded-xl shadow-lg shadow-amber-500/20 transition-all active:scale-[0.98] focus:outline-none">
+                Daftar Sekarang
+            </button>
+        </div>
 
-        <p class="text-center text-sm text-gray-500">
-            Sudah punya akun? <a href="{{ route('login') }}" class="text-amber-600 hover:text-amber-700 font-medium">Masuk</a>
-        </p>
+        <!-- Login Link -->
+        <div class="pt-6 border-t border-gray-50 text-center">
+            <p class="text-sm text-gray-500">
+                Sudah punya akun? 
+                <a href="{{ route('login') }}" class="font-bold text-amber-600 hover:text-amber-700 transition-colors">
+                    Masuk Sekarang
+                </a>
+            </p>
+        </div>
     </form>
 </x-guest-layout>

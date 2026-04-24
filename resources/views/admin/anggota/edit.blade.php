@@ -1,10 +1,10 @@
 <x-app-layout>
     <x-slot name="header">Edit Anggota</x-slot>
 
-    <div class="max-w-lg">
+    <div class="max-w-lg mx-auto">
         <x-ui.card>
             <!-- Decorative Header -->
-            <div class="bg-gradient-to-r from-teal-500 to-emerald-500 px-5 py-4 flex items-center gap-3">
+            <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-t-2xl px-5 py-4 flex items-center gap-3">
                 <div class="w-9 h-9 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
                     <i class="ri-user-settings-line text-white text-lg"></i>
                 </div>
@@ -25,13 +25,20 @@
                     <div class="space-y-3">
                         <div>
                             <x-ui.label for="name">Nama Lengkap</x-ui.label>
-                            <x-ui.input id="name" name="name" type="text" :value="old('name', $user->name)" required autofocus icon="ri-user-line" />
+                            <x-ui.input id="name" name="name" type="text" :value="old('name', $user->name)" required icon="ri-user-line" />
                             <x-input-error class="mt-1" :messages="$errors->get('name')" />
                         </div>
-                        <div>
-                            <x-ui.label for="email">Email</x-ui.label>
-                            <x-ui.input id="email" name="email" type="email" :value="old('email', $user->email)" required icon="ri-mail-line" />
-                            <x-input-error class="mt-1" :messages="$errors->get('email')" />
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <x-ui.label for="email">Email</x-ui.label>
+                                <x-ui.input id="email" name="email" type="email" :value="old('email', $user->email)" required icon="ri-mail-line" />
+                                <x-input-error class="mt-1" :messages="$errors->get('email')" />
+                            </div>
+                            <div>
+                                <x-ui.label for="phone">No. Telepon</x-ui.label>
+                                <x-ui.input id="phone" name="phone" type="text" :value="old('phone', $user->phone)" placeholder="0812..." icon="ri-whatsapp-line" />
+                                <x-input-error class="mt-1" :messages="$errors->get('phone')" />
+                            </div>
                         </div>
                     </div>
                 </div>

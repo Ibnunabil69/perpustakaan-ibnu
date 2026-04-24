@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'PerpusKita') }}</title>
+    <title>{{ isset($header) ? $header . ' | ' . config('app.name', 'PerpusKita') : config('app.name', 'PerpusKita') }}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +26,7 @@
                 <div class="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-xl shadow-amber-500/20 mb-6">
                     <i class="ri-book-3-line text-white text-3xl"></i>
                 </div>
-                <h2 class="text-2xl font-bold text-white mb-2 tracking-tight lowercase">perpus<span class="text-amber-400">kita</span></h2>
+                <h2 class="text-2xl font-bold text-white mb-2 tracking-tight">Perpus<span class="text-amber-400">Kita</span></h2>
                 <p class="text-gray-400 text-sm text-center leading-relaxed">Sistem Perpustakaan Digital<br>untuk Sekolah Modern</p>
 
                 <!-- Decorative dots -->
@@ -48,7 +48,7 @@
                             <i class="ri-book-3-line text-white text-2xl"></i>
                         </div>
                         <div>
-                            <span class="font-semibold text-xl text-gray-800 lowercase tracking-tight">perpus<span class="text-amber-600">kita</span></span>
+                            <span class="font-semibold text-xl text-gray-800 tracking-tight">Perpus<span class="text-amber-600">Kita</span></span>
                             <p class="text-xs text-gray-400 mt-0.5">Sistem Perpustakaan Digital</p>
                         </div>
                     </a>

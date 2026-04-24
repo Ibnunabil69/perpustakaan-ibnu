@@ -4,13 +4,13 @@
     <div class="max-w-lg mx-auto">
         <x-ui.card>
             <!-- Decorative Header -->
-            <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 px-5 py-4 flex items-center gap-3">
+            <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 rounded-t-2xl px-5 py-4 flex items-center gap-3">
                 <div class="w-9 h-9 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
                     <i class="ri-user-add-line text-white text-lg"></i>
                 </div>
                 <div>
                     <h3 class="text-sm font-semibold text-white">Anggota Baru</h3>
-                    <p class="text-xs text-white/70">Daftarkan siswa sebagai anggota perpustakaan</p>
+                    <p class="text-xs text-white/70">Daftarkan warga sekolah sebagai anggota</p>
                 </div>
             </div>
 
@@ -25,13 +25,20 @@
                     <div class="space-y-3">
                         <div>
                             <x-ui.label for="name">Nama Lengkap</x-ui.label>
-                            <x-ui.input id="name" name="name" type="text" :value="old('name')" required autofocus placeholder="Nama lengkap siswa" icon="ri-user-line" />
+                            <x-ui.input id="name" name="name" type="text" :value="old('name')" required placeholder="Nama lengkap anggota" icon="ri-user-line" />
                             <x-input-error class="mt-1" :messages="$errors->get('name')" />
                         </div>
-                        <div>
-                            <x-ui.label for="email">Email</x-ui.label>
-                            <x-ui.input id="email" name="email" type="email" :value="old('email')" required placeholder="nama@email.com" icon="ri-mail-line" />
-                            <x-input-error class="mt-1" :messages="$errors->get('email')" />
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <x-ui.label for="email">Email</x-ui.label>
+                                <x-ui.input id="email" name="email" type="email" :value="old('email')" required placeholder="nama@email.com" icon="ri-mail-line" />
+                                <x-input-error class="mt-1" :messages="$errors->get('email')" />
+                            </div>
+                            <div>
+                                <x-ui.label for="phone">No. Telepon</x-ui.label>
+                                <x-ui.input id="phone" name="phone" type="text" :value="old('phone')" placeholder="0812..." icon="ri-whatsapp-line" />
+                                <x-input-error class="mt-1" :messages="$errors->get('phone')" />
+                            </div>
                         </div>
                     </div>
                 </div>

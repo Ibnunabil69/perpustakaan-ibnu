@@ -7,7 +7,7 @@
         'sm' => 'px-3 py-1.5 text-xs',
         'md' => 'px-3.5 py-2 text-sm',
         'lg' => 'px-4 py-2 text-sm',
-        'icon' => 'w-8 h-8 text-sm',
+        'icon' => 'w-[38px] h-[38px] text-sm',
         default => 'px-3.5 py-2 text-sm',
     };
 
